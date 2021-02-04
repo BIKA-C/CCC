@@ -55,8 +55,8 @@ int main()
     // and VHVH or VVVHHHVH 
     // 4 possible situations:
     // 0V 0H
-    // 1V 1H
-    // 0V 0H
+    // 1V 0H
+    // 0V 1H
     // 1V 1H
 
     if (H_count % 2 == 0 && V_count % 2 == 0)
