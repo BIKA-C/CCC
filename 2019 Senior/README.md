@@ -2,8 +2,8 @@
 
 By William Chen
 
-[x] Language used: C  
-[x] Documented with explanantions
+:white_check_mark: Language used: C  
+:white_check_mark: Documented with explanantions
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
