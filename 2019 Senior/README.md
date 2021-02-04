@@ -155,7 +155,7 @@ int main()
 }
 ```
 
-## Problem S3:  Arithmetic Square
+## Problem S3: Arithmetic Square
 
 ``` C
 // Arithmetic Square
