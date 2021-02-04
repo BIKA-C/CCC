@@ -2,23 +2,38 @@
 
 By William Chen
 
-- [X] Language used: C  
-- [X] Documented with explanantions
+[X] Language used: C  
+[X] Documented with explanantions
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
 - [CCC 2019 Senior Solutions](#ccc-2019-senior-solutions)
-  - [[X] Problem S1: Flipper](#x-problem-s1-flipper)
-  - [[X] Problem S2: Pretty Average Primes](#x-problem-s2-pretty-average-primes)
-  - [[X] Problem S3:  Arithmetic Square](#x-problem-s3-arithmetic-square)
+  - [Problem S1: Flipper](#problem-s1-flipper)
+  - [Problem S2: Pretty Average Primes](#problem-s2-pretty-average-primes)
+  - [Problem S3:  Arithmetic Square](#problem-s3-arithmetic-square)
+  - [Problem S4: Tourism](#problem-s4-tourism)
+  - [Problem S5: Triangle: The Data Structure](#problem-s5-triangle-the-data-structure)
 
 <!-- /code_chunk_output -->
 
-## [X] Problem S1: Flipper
+## Overview {ignore=true}
+
+| Problem                                                                             |           Mark            |
+| :---------------------------------------------------------------------------------- | :-----------------------: |
+| [Problem S1: Flipper](#problem-s1-flipper)                                          | 15/15 :heavy_check_mark:  |
+| [Problem S2: Pretty Average Primes](#problem-s2-pretty-average-primes)              | 15/15 :heavy_check_mark:  |
+| [Problem S3:  Arithmetic Square](#problem-s3-arithmetic-square)                     | 15/15 :heavy_check_mark:  |
+| [Problem S4: Tourism](#problem-s4-tourism)                                          | 0/15  :hammer_and_wrench: |
+| [Problem S5: Triangle: The Data Structure](#problem-s5-triangle-the-data-structure) | 0/15  :hammer_and_wrench: |
+| **Total:**                                                                          |         **45/75**         |
+
+## Problem S1: Flipper
 
 ```C
+#include <stdio.h>
+
 #include <stdio.h>
 
 int main()
@@ -28,6 +43,7 @@ int main()
 
     int H_count = 0, V_count = 0;
 
+    // count inputs
     for (int i = 0; input[i] != '\0'; i++)
     {
         if (input[i] == 'V')
@@ -35,6 +51,14 @@ int main()
         else if (input[i] == 'H')
             H_count++;
     }
+
+    // notice: VV cancel each other, so do HH
+    // and VHVH or VVVHHHVH 
+    // 4 possible situations:
+    // 0V 0H
+    // 1V 1H
+    // 0V 0H
+    // 1V 1H
 
     if (H_count % 2 == 0 && V_count % 2 == 0)
         printf("1 2\n3 4");
@@ -47,7 +71,7 @@ int main()
 }
 ```
 
-## [X] Problem S2: Pretty Average Primes
+## Problem S2: Pretty Average Primes
 
 ```C
 #include <math.h>
@@ -73,16 +97,21 @@ int* readIn(int size)
 
 void calculate(int num, int* ansA, int* ansB)
 {
+    // if it is a prime, then itself is the only answer
     if (isPrime(num))
     {
         *ansA = *ansB = num;
         return;
     }
 
+    // brutal search
     for (int i = 3; i < num; i++)
     {
-        if (! isPrime(i))
+        if (! isPrime(i)) // pass if it is not a prime
             continue;
+
+        // notice: a valid answer must satisfy 2N = A + B, -> B = 2N - A
+        // where B must be a prime as well
         else if (! isPrime(2 * num - i))
             continue;
         else
@@ -126,7 +155,7 @@ int main()
 }
 ```
 
-## [X] Problem S3:  Arithmetic Square
+## Problem S3:  Arithmetic Square
 
 ``` C
 // Arithmetic Square
@@ -684,3 +713,7 @@ int main()
     present(grid);
 }
 ```
+
+## Problem S4: Tourism
+
+## Problem S5: Triangle: The Data Structure
