@@ -33,7 +33,6 @@ By William Chen
 
 ```C
 #include <stdio.h>
-
 #include <stdio.h>
 
 int main()
@@ -159,7 +158,6 @@ int main()
 
 ``` C
 // Arithmetic Square
-
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
