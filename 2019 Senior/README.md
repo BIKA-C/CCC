@@ -2,8 +2,8 @@
 
 By William Chen
 
-[X] Language used: C  
-[X] Documented with explanantions
+[x] Language used: C  
+[x] Documented with explanantions
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
