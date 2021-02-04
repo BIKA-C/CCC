@@ -1,4 +1,19 @@
-# CCC 2019 Senior C
+# CCC 2019 Senior Solutions
+
+By William Chen
+
+> language: C
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [CCC 2019 Senior Solutions](#ccc-2019-senior-solutions)
+  - [Problem S1: Flipper](#problem-s1-flipper)
+  - [Problem S2: Pretty Average Primes](#problem-s2-pretty-average-primes)
+  - [Problem S3:  Arithmetic Square](#problem-s3-arithmetic-square)
+
+<!-- /code_chunk_output -->
 
 ## Problem S1: Flipper
 
@@ -110,7 +125,7 @@ int main()
 }
 ```
 
-## Problem S3: Pretty Average Primes
+## Problem S3:  Arithmetic Square
 
 ``` C
 // Arithmetic Square
