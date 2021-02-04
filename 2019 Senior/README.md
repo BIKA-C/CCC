@@ -33,7 +33,6 @@ By William Chen
 
 ```C
 #include <stdio.h>
-#include <stdio.h>
 
 int main()
 {
