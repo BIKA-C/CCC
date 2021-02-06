@@ -730,7 +730,7 @@ Possible Combinations:
 
 >*Notice*: What we want to do is that **TRY** to group the top 3 biggest numbers into their groups. There might be situations that the top numbers could not be in their groups  
 >>e.g. `N = 5`, `K = 3`, `days = 2` and scores are: `9 8 1 1 1`  
-Notice: there is no way to seprate 9 and 8 into different groups.There is not enough days
+Notice: there is no way to seprate 9 and 8 into different groups. There is not enough days
 
 ### More Complicated Situations
 
@@ -772,9 +772,10 @@ Consider the following:
 
 ### Some Discoveries
 
-:warning: These might be wrong
+:warning: These might be wrong or fragmentary
 
 1. The Minmum visit per day&emsp;`m = (N % K) == 0 ? (K) : (N % K)`
+   > The *Minmum* by definition means that if there is a day visited a number that is less than `m` then the trip can not be finished with in the 'fewest days'
 2. If the distance d (`d = indexF - indexI`) between the largest and the second largest satisfies `d >= m`, then these two numbers can be seperated into 2 groups
 
     ```txt
