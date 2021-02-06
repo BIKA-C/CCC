@@ -774,8 +774,9 @@ Consider the following:
 
 :warning: These might be wrong or fragmentary
 
-1. The Minmum visit per day&emsp;`m = (N % K) == 0 ? (K) : (N % K)`
+1. The Minmum visit per day&emsp;`Minmum = (N % K) == 0 ? (K) : (N % K)`
    > The *Minmum* by definition means that if there is a day visited a number that is less than `m` then the trip can not be finished with in the 'fewest days'
+   >> Notice: The *Minmum* `m` can be ranged `Minmum <= m <= K`
 2. If the distance d (`d = indexF - indexI`) between the largest and the second largest satisfies `d >= m`, then these two numbers can be seperated into 2 groups
 
     ```txt
@@ -797,9 +798,15 @@ Consider the following:
     1, 1, 1, 1, 9, 8, 1
     ```
 
+Since the Minmum visit is only allowed once, therefor the quesion is really asking:
+
+1. Which day will have the Minmum visit?
+2. What number the Minmum will be? (Minmum Visit `x` is ranged: `Minmum <= x <= K`)
+3. Which the other day will compensate if `x` is bigger than Minmum?
+
 ### Brave Attempts
 
-First Idea (recursive function)
+~~First Idea (recursive function)~~:x:Failed
 
   1. locate the biggest score
   2. split the array into two parts
@@ -809,6 +816,8 @@ First Idea (recursive function)
   6. if did work out, repeat the process for the 2nd largest
 
      >A desending ordered index list :heavy_check_mark:
+
+Second Idea
 
 ### Source Code
 

@@ -8,6 +8,7 @@ struct Info
     int  N;
     int  K;
     int  fewestDay;
+    int  minimum;
     int* scores;
     int* orderedIndex;
 };
@@ -23,24 +24,24 @@ void fewestDays(Info data)
         data->fewestDay++;
 }
 
-// return the INDEX of the biggest value in a given set
+// return the biggest value in a given set
 int localMax(int array[], int length)
 {
     // find the max in a given set
-    int max = 0;
+    int max = array[0];
     for (int i = 1; i < length; i++)
-        if (array[i] > array[max])
-            max = i;
+        if (array[i] > max)
+            max = array[i];
     return max;
 }
 
-// an interesting sorting algorithem (FAST)
+// radix: an interesting sorting algorithem (FAST)
 void orderedIndex(Info data)
 {
 #define BASE 10
 
     data->orderedIndex = calloc(data->N, sizeof(int));
-    int max            = data->scores[localMax(data->scores, data->N)];
+    int max            = localMax(data->scores, data->N);
     int exp            = 1;
 
     while (max / exp > 0)
@@ -85,11 +86,32 @@ void preparation(Info data)
     fewestDays(data);
     // descending sort by index
     orderedIndex(data);
+    data->minimum = (data->N % data->K) == 0 ? (data->K) : (data->N % data->K);
+}
+
+int sum(Info data)
+{
+    int ans = 0;
+    for (int i = 0; i < data->N; i++)
+        ans += data->scores[i];
+    return ans;
+}
+
+int result(Info data, int* breakPoints)
+{
+    int ans = localMax(data->scores, breakPoints[0]);
+    for (int i = 1; i < data->fewestDay; i++)
+        ans += localMax(&data->scores[breakPoints[i]], breakPoints[i - 1] - breakPoints[i]);
+    
+    return ans;
 }
 
 int calculate(Info data)
 {
+    int ans = 0;
     preparation(data);
+    if (data->K == 1)
+        return sum(data);
     /* some simple trials
     let's say N = 7, K = 3, fewest day = 3
     
@@ -160,7 +182,14 @@ int calculate(Info data)
     N = 7, K = 4, m = 3
     1, 1, 1, 1, 9, 8, 1
     */
-
+    for (int i = 0; i < data->fewestDay; i++)
+    {
+        int distance = abs(data->orderedIndex[i] - ((i - 1) < 0 ? 0 : data->orderedIndex[i - 1]));
+        int group    = (data->orderedIndex[i] + 1) / data->K;
+        int remain   = (data->orderedIndex[i] + 1) - data->K * group;
+        if (remain <= data->minimum)
+        // if(localMax(int *array, int length))
+    }
     return 0;
 }
 
