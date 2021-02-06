@@ -715,6 +715,88 @@ int main()
 
 :no_entry:Unfinished
 
+### Some Simple Trials
+
+Let's say `N=7` and `K=3`, then `days=3`  
+scores are: `2 5 7 1 4 9 3`
+
+Possible Combinations:
+| #   |      Combination      | Total |
+| --- | :-------------------: | :---: |
+| 1.  | (2 5 7), (1 4 9), (3) |  19   |
+| 2.  | (2), (5 7 1), (4 9 3) |  19   |
+| 3.  | (2 5), (7 1), (4 9 3) |  21   |
+| 4.  | (2 5), (7 1 4), (9 3) |  21   |
+
+>*Notice*: What we want to do is that **TRY** to group the top 3 biggest numbers into their groups. There might be situations that the top numbers could not be in their groups  
+>>e.g. N = 5, K = 3, days = 2
+    scores: 9 8 1 1 1  
+    Notice: there is no way to seprate 9 and 8 into different groups.There is not enough days
+
+### More Complicated Situations
+
+Consider the following:
+
+```txt
+    N = 1000, K = 999, days 2
+    (1 999) or (999 1)
+    compare the first and the last number
+
+    N = 1000, K = 998, days 2
+    (2 998) or (998 2)
+    compare the first 2 and the last 2
+
+    N = 1000, K = 800, days2
+    (200 800) or (800 200)
+    compare the first 200 and the last 200
+
+    N = 1000, K = 500, days 2
+    (500 500)
+    compare the first 500 and the last 500
+
+    N = 1000, K = 499, days 3 ?
+    (2 499 499)
+    (3 498 499) ...
+
+    N = 1000, K = 333, days 4 ?
+```
+
+### Some Discoveries
+
+:warning: These might be wrong
+
+1. The Minmum visit per day&emsp;`m = (N % K) == 0 ? (K) : (N % K)`
+2. If the distance d (`d = indexF - indexI`) between the largest and the second largest satisfies `d >= m`, then these two numbers can be seperated into 2 groups
+
+    ```txt
+    N = 5, K = 3, m = 2
+    1, 9, 1, 8, 1
+    ```
+
+3. If `d < m`, but the largest number belongs to a **PREVIOUS** group then these two numbers can be seperated into 2 groups
+
+    ```txt
+    N = 5, K = 3, m = 2
+    1, 9, 8, 1, 1
+    ```
+
+4. If `d < m`, and the largest is at the **begaining** of a **NEW** group, then these two numbers can **NOT** be seperated into 2 groups
+
+    ```txt
+    N = 7, K = 4, m = 3
+    1, 1, 1, 1, 9, 8, 1
+    ```
+
+### Brave Attempts
+
+- First Idea (recursive function)
+  1. locate the biggest score
+  2. split the array into two parts
+  3. check forwards if groups can be formed
+  4. check backwards if groups can be formed
+  5. if did not success, try the 2nd largest
+  6. if did work out, repeat the process for the 2nd largest
+
 ```C
 // Tourism
 #include <math.h>

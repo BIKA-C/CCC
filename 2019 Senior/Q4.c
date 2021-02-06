@@ -55,7 +55,7 @@ int localMax(int array[], int length)
 
 int calculate(Info data)
 {
-    /*
+    /* some simple trials
     let's say N = 7, K = 3, fewest day = 3
     
     scores: 2 5 7 1 4 9 3
@@ -74,7 +74,9 @@ int calculate(Info data)
     scores: 9 8 1 1 1
     notice: there is no way to seprate 9 and 8 into different groups 
     there is not enough days
+    */
 
+    /* more complicated situations
     consider the following:
 
     N = 1000, K = 999, days 2
@@ -91,14 +93,49 @@ int calculate(Info data)
 
     N = 1000, K = 500, days 2
     (500 500)
-    comare the first 500 and the last 500
+    compare the first 500 and the last 500
 
     N = 1000, K = 499, days 3 ?
+    (2 499 499)
+    (3 498 499) ...
 
     N = 1000, K = 333, days 4 ?
+    */
 
+    ///////////////////
+    
+    /* discovery
     the minmum visit each day can be expressed as:
-    y = N % K
+    m = N % K
+    if m = 0, then m = K
+
+    if the distance d (d = indexF - indexI) between the largest and the second largest satisfies
+    d >= m
+    then these two numbers definitely can be seperated into 2 groups
+    N = 5, K = 3, m = 2
+    1, 9, 1, 8, 1
+
+    if d < m, but the largest number belongs to a PREVIOUS group
+    then these two numbers definitely can be seperated into 2 groups
+    N = 5, K = 3, m = 2
+    1, 9, 8, 1, 1
+
+    if d < m, and the largest is at the begaining of a NEW group
+    then these two numbers can NOT be seperated into 2 groups
+    N = 7, K = 4, m = 3
+    1, 1, 1, 1, 9, 8, 1
+    */
+
+    /* brave attempts
+    first attempt:
+    1. locate the biggest score
+    2. split the array into two parts based on the largest
+    3. check forward and backward if it possible to group it in
+    4. if did not work out try the second largest
+    5. if did work out, repeat the process for the second largest
+    recursive function
+
+    
 
     */
     return 0;
