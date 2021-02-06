@@ -12,7 +12,7 @@ By William Chen
 - [CCC 2019 Senior Solutions](#ccc-2019-senior-solutions)
   - [Problem S1: Flipper](#problem-s1-flipper)
   - [Problem S2: Pretty Average Primes](#problem-s2-pretty-average-primes)
-  - [Problem S3:  Arithmetic Square](#problem-s3-arithmetic-square)
+  - [Problem S3: Arithmetic Square](#problem-s3-arithmetic-square)
   - [Problem S4: Tourism](#problem-s4-tourism)
   - [Problem S5: Triangle: The Data Structure](#problem-s5-triangle-the-data-structure)
 
@@ -712,5 +712,8 @@ int main()
 ```
 
 ## Problem S4: Tourism
+
+:no_entry:Unfinished
+@import "Q4.c"
 
 ## Problem S5: Triangle: The Data Structure
