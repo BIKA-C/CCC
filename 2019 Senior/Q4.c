@@ -24,7 +24,7 @@ void fewestDays(Info data)
 
 Info readIn()
 {
-    // creat data
+    // create data
     Info data = (Info)calloc(1, sizeof(struct Info));
 
     // take N and K
