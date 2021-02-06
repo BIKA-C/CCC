@@ -9,6 +9,7 @@ struct Info
     int  K;
     int  fewestDay;
     int* scores;
+    int* orderedIndex;
 };
 typedef struct Info* Info;
 
@@ -20,6 +21,44 @@ void fewestDays(Info data)
 
     if (modf(days, &days) > 0)
         data->fewestDay++;
+}
+
+// return the INDEX of the biggest value in a given set
+int localMax(int array[], int length)
+{
+    // find the max in a given set
+    int max = 0;
+    for (int i = 1; i < length; i++)
+        if (array[i] > array[max])
+            max = i;
+    return max;
+}
+
+// an interesting sorting algorithem (FAST)
+void orderedIndex(Info data)
+{
+#define BASE 10
+
+    data->orderedIndex = calloc(data->N, sizeof(int));
+    int max            = data->scores[localMax(data->scores, data->N)];
+    int exp            = 1;
+
+    while (max / exp > 0)
+    {
+        int bucket[BASE] = {0};
+
+        for (int i = 0; i < data->N; i++)
+            bucket[BASE - (data->scores[i] / exp) % BASE]++;
+
+        for (int i = 1; i < BASE; i++)
+            bucket[i] += bucket[i - 1];
+
+        for (int i = 0; i < data->N; i++)
+            data->orderedIndex[--bucket[BASE - (data->scores[i] / exp) % BASE]] = i;
+
+        exp *= BASE;
+    }
+#undef BASE
 }
 
 Info readIn()
@@ -37,24 +76,20 @@ Info readIn()
     for (int i = 0; i < data->N; i++)
         scanf("%d", ptr++);
 
-    // calculate the fewest days
-    fewestDays(data);
-
     return data;
 }
 
-int localMax(int array[], int length)
+void preparation(Info data)
 {
-    // find the max in a given set
-    int max = array[0];
-    for (int i = 1; i < length; i++)
-        if (array[i] > max)
-            max = array[i];
-    return max;
+    // calculate the fewest days
+    fewestDays(data);
+    // descending sort by index
+    orderedIndex(data);
 }
 
 int calculate(Info data)
 {
+    preparation(data);
     /* some simple trials
     let's say N = 7, K = 3, fewest day = 3
     
@@ -103,7 +138,7 @@ int calculate(Info data)
     */
 
     ///////////////////
-    
+
     /* discovery
     the minmum visit each day can be expressed as:
     m = N % K
@@ -126,18 +161,6 @@ int calculate(Info data)
     1, 1, 1, 1, 9, 8, 1
     */
 
-    /* brave attempts
-    first attempt:
-    1. locate the biggest score
-    2. split the array into two parts based on the largest
-    3. check forward and backward if it possible to group it in
-    4. if did not work out try the second largest
-    5. if did work out, repeat the process for the second largest
-    recursive function
-
-    
-
-    */
     return 0;
 }
 
@@ -148,6 +171,7 @@ int main()
 
     printf("%d", data->fewestDay);
 
+    free(data->orderedIndex);
     free(data->scores);
     free(data);
 }

@@ -808,6 +808,8 @@ First Idea (recursive function)
   5. if did not success, try the 2nd largest
   6. if did work out, repeat the process for the 2nd largest
 
+     >A desending ordered index list :heavy_check_mark:
+
 ### Source Code
 
 ```C
